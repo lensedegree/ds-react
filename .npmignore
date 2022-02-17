@@ -1,0 +1,6 @@
+.github/**
+**/node_modules
+public
+.storybook
+src/**
+!src/components
