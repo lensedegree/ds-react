@@ -6,3 +6,4 @@ src/**/*.stories.jsx
 src/**/*.stories.tsx
 src/**/*.stories.ts
 src/**/*.stories.mdx
+build-storybook.log
