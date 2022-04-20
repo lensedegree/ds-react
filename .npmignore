@@ -1,6 +1,8 @@
-.github/**
-**/node_modules
-public
+.github
 .storybook
-src/**
-!src/components
+**/node_modules
+src/**/*.stories.js
+src/**/*.stories.jsx
+src/**/*.stories.tsx
+src/**/*.stories.ts
+src/**/*.stories.mdx

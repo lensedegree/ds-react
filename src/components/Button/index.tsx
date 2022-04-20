@@ -1,39 +1,60 @@
-import { ReactNode } from "react";
-import { MdArrowForward } from 'react-icons/md'
+import { ReactChild } from "react"
 
-import './index.css'
+import '@overlens/ds-css/src/components/Button/index.css'
 
 interface ButtonProps {
-	children: ReactNode
-	variant?: 'basic' | 'primary' | 'secundary' | 'tertiary'
-	size?: 'large' | 'medium' | 'small'
-  onClick?: () => void;
+	variant?: 'basic' | 'primary' | 'secundary' | 'tertiary' | 'danger' | 'disable'
+	size?: 'small' | 'medium' | 'large'
+	icon?: boolean
+	theme?: 'morpho-blue' | 'yellow-lens' | 'green-lens' | 'red-lens' 
+		| 'purple-lens' | 'orange-lens' | 'lime-lens'
+	onClick?: Function
+	children: ReactChild
 }
 
-function Button({ 
-	children, 
+export const Button = ({
 	variant = 'primary',
 	size = 'large',
-  ...props
-}: ButtonProps) {
+	icon = false,
+	theme = 'morpho-blue',
+	onClick = () => {},
+	children
+}: ButtonProps) => {
+
+	function handleClick() {
+		onClick()
+	}
 
 	if(variant === 'basic') {
 		return (
 			<button 
-				className={"button-reset variant--basic size--basic"}
-				{...props}
+				className={`button variant--basic theme--${theme}`} 
+				onClick={handleClick}
 			>
 				{children}
-				<MdArrowForward size={16} />
+				<span></span>
 			</button>
 		)
 	}
 
-	return(
-		<button className={`button-reset variant--${variant} size--${size}`}>
+	return (
+		<button 
+			className={`button variant--${variant} size--${size} theme--${theme}`}
+			onClick={handleClick}
+		>
 			{children}
+			{
+				icon && <span className="material-icons-outlined md-18">
+					file_download
+					<style>
+						{`
+							.material-icons-outlined.md-18 {
+								font-size: 18px;
+							}
+						`}
+					</style>
+				</span>
+			}
 		</button>
 	)
 }
-
-export { Button }
